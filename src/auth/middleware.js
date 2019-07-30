@@ -10,6 +10,8 @@ module.exports = (req, res, next) => {
     switch( authType.toLowerCase() ) {
       case 'basic': 
         return _authBasic(authString);
+      case 'bearer':
+        return _authBearer(authString);
       default: 
         return _authError();
     }
@@ -18,6 +20,12 @@ module.exports = (req, res, next) => {
     next(e);
   }
   
+  function _authBearer(authString){
+    return User.authenticateToken(authString)
+    .then(user => _authenticate(user))
+    .catch(next);
+
+  }
   
   function _authBasic(str) {
     // str: am9objpqb2hubnk=

@@ -39,13 +39,18 @@ users.statics.createFromOauth = function(email) {
 
 };
 
+users.statics.authenticateToken = function(token) {
+  let parsedToken = jwt.verify(token, process.env.SECRET);
+  let query = {_id:parsedToken.id};
+  return this.findOne(query)
+};
+
 users.statics.authenticateBasic = function(auth) {
   let query = {username:auth.username};
   return this.findOne(query)
     .then( user => user && user.comparePassword(auth.password) )
     .catch(error => {throw error;});
 };
-
 users.methods.comparePassword = function(password) {
   return bcrypt.compare( password, this.password )
     .then( valid => valid ? this : null);

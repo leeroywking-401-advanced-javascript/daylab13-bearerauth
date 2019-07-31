@@ -9,15 +9,11 @@
 ### Author: Lee-Roy King
 
 ### Links and Resources
-* [submission PR](https://github.com/leeroywking-401-advanced-javascript/lab11/pull/1)
+* [submission PR](https://github.com/leeroywking-401-advanced-javascript/daylab13-bearerauth/pull/1)
 * [![Build Status](https://www.travis-ci.com/leeroywking-401-advanced-javascript/daylab13-bearerauth.svg? branch=inclass)](https://www.travis-ci.com/leeroywking-401-advanced-javascript/daylab13-bearerauth)
 * ^ travis
-* [back-end](https://lap11.herokuapp.com/) (when applicable)
+* [back-end](https://lap13.herokuapp.com/) (when applicable)
 * [front-end](http://xyz.com) (when applicable)
-
-#### Documentation
-* [api docs](http://xyz.com) (API servers)
-* [jsdoc](https://lap11.herokuapp.com/docs/) (Server assignments)
 
 ### Modules
 #### `modulename.js`
@@ -36,14 +32,13 @@ Usage Notes or examples
 * `SECRET` - Arbitrary string
 #### Running the app
 * `npm start`
-* Endpoint: `/signup`
+* Endpoint: POST username:password `https://lap13.herokuapp.com/signup`
   * Returns a token
-* Endpoint: `/signin`
+* Endpoint: POST bearer`https://lap13.herokuapp.com/signin`
   * Returns a token
-* Endpoint: `/books
-  * returns all the books (if you are authenticated)
-* Endpoint: `/books/:id`
-  * returns moby dick no matter what you enter for id
+* Endpoint: POST bearer `https://lap13.herokuapp.com/onetime`
+  * returns thangs
+
   
 #### Tests
 /onetime route is single use for a bearer token

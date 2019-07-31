@@ -8,6 +8,8 @@ const users = new mongoose.Schema({
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
   email: {type: String},
+  createdOn: {type: Number, required:true},
+  tokenInfo: {type: Object, required:false},
   role: {type: String, default:'user', enum: ['admin','editor','user']},
 });
 
@@ -15,6 +17,7 @@ users.pre('save', function(next) {
   bcrypt.hash(this.password, 10)
     .then(hashedPassword => {
       this.password = hashedPassword;
+      this.createdOn = new Date().getTime();
       next();
     })
     .catch(console.error);
@@ -40,6 +43,7 @@ users.statics.createFromOauth = function(email) {
 };
 
 users.statics.authenticateToken = function(token) {
+  console.log(token);
   let parsedToken = jwt.verify(token, process.env.SECRET);
   let query = {_id:parsedToken.id};
   return this.findOne(query)
@@ -63,7 +67,14 @@ users.methods.generateToken = function() {
     role: this.role,
   };
   
-  return jwt.sign(token, process.env.SECRET);
+  return jwt.sign(token, process.env.SECRET, {expiresIn: '45m'});
 };
 
+
+
 module.exports = mongoose.model('users', users);
+
+/*
+http post :3000/secret "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNDBmZDU0YTA4ODY3NWRiZmM5NDA4MCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTY0NTQwOTA4LCJleHAiOjE1NjQ1NDM2MDh9.cIe5Lgmm9e4UaBcikk_QMc-yp18kx-iXhN11eVpj8YM"
+http post :3000/signin "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNDBmZDU0YTA4ODY3NWRiZmM5NDA4MCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTY0NTQzNTU1LCJleHAiOjE1NjQ1NDYyNTV9.palM9oJ7pXt1zEIqOBHMI2M4tmEJH7ysWBYuoI8rCpY"
+*/

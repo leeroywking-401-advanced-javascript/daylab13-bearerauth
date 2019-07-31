@@ -10,7 +10,7 @@
 
 ### Links and Resources
 * [submission PR](https://github.com/leeroywking-401-advanced-javascript/lab11/pull/1)
-* [![Build Status](https://www.travis-ci.com/leeroywking-401-advanced-javascript/lab11.svg?branch=weds)](https://www.travis-ci.com/leeroywking-401-advanced-javascript/lab11)
+* [![Build Status](https://www.travis-ci.com/leeroywking-401-advanced-javascript/daylab13-bearerauth.svg? branch=inclass)](https://www.travis-ci.com/leeroywking-401-advanced-javascript/daylab13-bearerauth)
 * ^ travis
 * [back-end](https://lap11.herokuapp.com/) (when applicable)
 * [front-end](http://xyz.com) (when applicable)

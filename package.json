@@ -8,7 +8,6 @@
     "watch": "nodemon index.js",
     "test-watch": "jest --watchAll",
     "test": "jest",
-    "tester": ""
   },
   "jest": {
     "testEnvironment": "node"

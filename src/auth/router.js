@@ -2,7 +2,7 @@
 
 const express = require('express');
 const authRouter = express.Router();
-
+require('./roles-model.js')
 const User = require('./users-model.js');
 const auth = require('./middleware.js');
 // const oauth = require('./oauth/google.js');
@@ -22,12 +22,12 @@ authRouter.post('/signup', (req, res, next) => {
     }).catch(next);
 });
 
-authRouter.post('/signin', auth, (req, res, next) => {
+authRouter.post('/signin', auth(), (req, res, next) => {
   res.cookie('auth', req.token);
   res.send(req.token);
 });
 
-authRouter.post('/onetime',auth, (req, res, next) => {
+authRouter.post('/onetime',auth(), (req, res, next) => {
   console.log(`request authorization: ${req.headers.authorization}`);
   if(blacklist.includes(req.headers.authorization)){res.send('token is expired')}
   blacklist.push(req.headers.authorization);
@@ -35,7 +35,7 @@ authRouter.post('/onetime',auth, (req, res, next) => {
   res.send(req.token);
 });
 
-authRouter.post('/secret', auth, (req,res,next) => {
+authRouter.post('/secret', auth(), (req,res,next) => {
   res.cookie('auth', req.token);
   res.send('You have access to the secrets');
 });
@@ -51,5 +51,13 @@ authRouter.post('/reset', (req,res,next) => {
 //     })
 //     .catch(next);
 // });
+
+authRouter.post('/roles', (res,req,next) => {
+  let role = new roles(req.body);
+  role.save()
+  .then( role => res.send(role)
+  .catch(next)
+  )
+})
 
 module.exports = authRouter;

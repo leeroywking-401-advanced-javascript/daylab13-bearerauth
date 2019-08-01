@@ -2,7 +2,7 @@
 
 const express = require('express');
 const authRouter = express.Router();
-require('./roles-model.js')
+const roles = require('./roles-model.js')
 const User = require('./users-model.js');
 const auth = require('./middleware.js');
 // const oauth = require('./oauth/google.js');

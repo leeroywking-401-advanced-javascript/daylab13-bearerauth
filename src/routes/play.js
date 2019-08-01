@@ -5,8 +5,9 @@ const auth = require('../auth/middleware.js');
 
 const router = express.Router()
 
-router.get('/dangerous', auth('delete'), (req,res) => {
+router.get('/dangerous', auth('read'), (req,res) => {
     res.status(200).send('Welcome to the danger zone!')
 })
+
 
 module.exports = router

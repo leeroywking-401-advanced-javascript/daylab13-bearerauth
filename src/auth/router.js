@@ -2,7 +2,7 @@
 
 const express = require('express');
 const authRouter = express.Router();
-const roles = require('./roles-model.js')
+const Role = require('./roles-model.js')
 const User = require('./users-model.js');
 const auth = require('./middleware.js');
 // const oauth = require('./oauth/google.js');
@@ -11,7 +11,7 @@ let blacklist = [];
 
 authRouter.post('/signup', (req, res, next) => {
   req.body.createdOn = new Date().getTime();
-  let user = new User(req.body);
+  let user = new User(req.body)
   user.save()
     .then( (user) => {
       req.token = user.generateToken();
@@ -52,12 +52,12 @@ authRouter.post('/reset', (req,res,next) => {
 //     .catch(next);
 // });
 
-authRouter.post('/roles', (res,req,next) => {
-  let role = new roles(req.body);
+authRouter.post('/roles', (req,res,next) => {
+  let role = new Role(req.body);
   role.save()
   .then( role => res.send(role)
-  .catch(next)
   )
+  .catch(next)
 })
 
 module.exports = authRouter;

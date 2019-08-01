@@ -26,13 +26,13 @@ users.pre('findOne', function(){
     this.populate('acl');
   }
   catch(e){
-    throw new Error(e.message)
-  }
-})
+    throw new Error(e.message);
+  };
+});
 
 
 users.methods.can = function(capability){
-  return true
+  return this.acl.capabilities.includes(capability)
   // return capabilities[this.role].includes(capability)
 }
 users.pre('save', function(next) {

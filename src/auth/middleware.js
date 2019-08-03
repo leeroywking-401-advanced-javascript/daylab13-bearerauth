@@ -40,7 +40,6 @@ module.exports = (capability) => (req, res, next) => {
   }
 
   function _authenticate(user) {
-    console.log(user)
     if(user && (!capability || user.can(capability))) {
       req.user = user;
       req.token = user.generateToken();

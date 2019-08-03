@@ -1,6 +1,6 @@
 'use strict';
 
-process.env.SECRET='test';
+process.env.SECRET='changeme';
 
 const jwt = require('jsonwebtoken');
 
@@ -38,14 +38,24 @@ describe('Auth Router', () => {
           });
       });
 
-      xit('can signin with basic', () => {
+      it('can signin with basic', () => {
         return mockRequest.post('/signin')
           .auth(users[userType].username, users[userType].password)
           .then(results => {
+            console.log(results.text);
             var token = jwt.verify(results.text, process.env.SECRET);
             expect(token.id).toEqual(id);
           });
       });
+
+      xit('can signin with bearer `', () => {
+        return mockRequest.post('/signin')
+        .set('authorization', 'bearer ' + encodedToken)
+        .then(results => {
+          var token = jwt.verify(results.text, process.env.SECRET);
+          expect(token.id).toEqual(encodedToken)
+        })
+      })
 
     });
     

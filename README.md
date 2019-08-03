@@ -9,7 +9,7 @@
 ### Author: Lee-Roy King
 
 ### Links and Resources
-* [submission PR](https://github.com/leeroywking-401-advanced-javascript/daylab13-bearerauth/pull/1)
+* [submission PR](https://github.com/leeroywking-401-advanced-javascript/daylab13-bearerauth/pull/2)
 * [back-end](https://lap14.herokuapp.com/) (when applicable)
 * [front-end](http://xyz.com) (when applicable)
 

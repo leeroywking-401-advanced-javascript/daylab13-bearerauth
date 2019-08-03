@@ -51,7 +51,7 @@ authRouter.get('/hidden-stuff', auth(), (req, res, next) => {
   // should require only a valid login
 })
 authRouter.get('/something-to-read', auth('read'), (req, res, next) => {
-  res.send('This route requires read credentials')
+  res.send('This route requires read credentials (You have them)')
   //should require the read capability
 })
 authRouter.post('/create-a-thing', auth('create'), (req, res, next) => {

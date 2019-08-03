@@ -11,7 +11,7 @@ const users = new mongoose.Schema({
   email: {type: String},
   createdOn: {type: Number, required:true},
   tokenInfo: {type: Object, required:false},
-  role: {type: String, default:'user', enum: ['admin','editor','user']},
+  role: {type: String, default:'user', enum: ['admin','editor','user','superuser']},
 }, {toObject:{virtuals:true}, toJSON:{virtuals:true}});
 
 users.virtual('acl', {

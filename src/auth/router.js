@@ -10,7 +10,7 @@ let blacklist = [];
 
 
 authRouter.post('/signup', (req, res, next) => {
-  req.body.createdOn = new Date().getTime();
+  // req.body.createdOn = new Date().getTime();
   let user = new User(req.body)
   user.save()
     .then((user) => {
@@ -18,7 +18,7 @@ authRouter.post('/signup', (req, res, next) => {
       req.user = user;
       res.set('token', req.token);
       res.cookie('auth', req.token);
-      res.send({ token: req.token, createdOn: user.createdOn });
+      res.send(req.token) // createdOn: user.createdOn });
     }).catch(next);
 });
 

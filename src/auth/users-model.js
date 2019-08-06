@@ -9,7 +9,7 @@ const users = new mongoose.Schema({
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
   email: {type: String},
-  createdOn: {type: Number, required:true},
+  // createdOn: {type: Number, required:true},
   tokenInfo: {type: Object, required:false},
   role: {type: String, default:'user', enum: ['admin','editor','user','superuser']},
 }, {toObject:{virtuals:true}, toJSON:{virtuals:true}});
@@ -88,6 +88,7 @@ users.methods.generateToken = function() {
   let token = {
     id: this._id,
     role: this.role,
+    // capabilities: this.acl.capabilities
   };
   
   return jwt.sign(token, process.env.SECRET, {expiresIn: '45m'});

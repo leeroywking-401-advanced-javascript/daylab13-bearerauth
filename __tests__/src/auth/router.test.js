@@ -48,7 +48,7 @@ describe('Auth Router', () => {
           });
       });
 
-      xit('can signin with bearer `', () => {
+      it('can signin with bearer `', () => {
         return mockRequest.post('/signin')
         .set('authorization', 'bearer ' + encodedToken)
         .then(results => {

@@ -13,6 +13,7 @@
 * [back-end](https://lap14.herokuapp.com/) (when applicable)
 * [front-end](http://xyz.com) (when applicable)
 
+[![Build Status](https://www.travis-ci.com/leeroywking-401-advanced-javascript/daylab13-bearerauth.svg?branch=master)](https://www.travis-ci.com/leeroywking-401-advanced-javascript/daylab13-bearerauth)
 ### Modules
 #### `modulename.js`
 ##### Exported Values and Methods
